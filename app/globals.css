@@ -70,6 +70,109 @@ html {
 }
 
 /* ================================================
+   TITLE & CARD EFFECTS
+   ================================================ */
+
+/* Luz barriendo el título blanco de izq a der */
+@keyframes light-sweep {
+  0%   { background-position: -200% center; }
+  60%  { background-position: 200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Glow pulsante para textos cyan */
+@keyframes cyan-glow-pulse {
+  0%, 100% {
+    text-shadow:
+      0 0 20px rgba(34, 211, 238, 0.35),
+      0 0 40px rgba(34, 211, 238, 0.12);
+  }
+  50% {
+    text-shadow:
+      0 0 35px rgba(34, 211, 238, 0.65),
+      0 0 70px rgba(34, 211, 238, 0.28),
+      0 0 110px rgba(34, 211, 238, 0.08);
+  }
+}
+
+/* Glow para section headers (texto + borde izquierdo) */
+@keyframes header-glow {
+  0%, 100% {
+    text-shadow: 0 0 8px rgba(34, 211, 238, 0.35);
+    filter: drop-shadow(-3px 0 6px rgba(34, 211, 238, 0.45));
+  }
+  50% {
+    text-shadow: 0 0 14px rgba(34, 211, 238, 0.75), 0 0 28px rgba(34, 211, 238, 0.25);
+    filter: drop-shadow(-3px 0 14px rgba(34, 211, 238, 0.8));
+  }
+}
+
+/* Shimmer diagonal que recorre la card */
+@keyframes card-shimmer {
+  0%   { left: -60%; }
+  100% { left: 130%; }
+}
+
+/* === CLASES === */
+
+.title-sweep {
+  background: linear-gradient(
+    90deg,
+    #ffffff 5%,
+    #ffffff 30%,
+    #67e8f9 46%,
+    #22d3ee 52%,
+    #ffffff 68%,
+    #ffffff 95%
+  );
+  background-size: 250% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: light-sweep 5s ease-in-out infinite;
+}
+
+.title-glow {
+  animation: cyan-glow-pulse 3s ease-in-out infinite;
+}
+
+.section-header {
+  animation: header-glow 2.5s ease-in-out infinite;
+}
+
+.card-fx {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Línea de shimmer diagonal */
+.card-fx::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 38%;
+  height: 200%;
+  background: linear-gradient(
+    105deg,
+    transparent 20%,
+    rgba(34, 211, 238, 0.045) 50%,
+    transparent 80%
+  );
+  animation: card-shimmer 4.5s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Glow cyan en hover */
+.card-fx:hover {
+  box-shadow:
+    0 0 0 1px rgba(34, 211, 238, 0.25),
+    0 0 24px rgba(34, 211, 238, 0.10),
+    0 0 50px rgba(34, 211, 238, 0.04);
+}
+
+/* ================================================
    SCROLLBAR
    ================================================ */
 

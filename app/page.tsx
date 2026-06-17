@@ -28,8 +28,9 @@ export default async function Home() {
       {/* HERO */}
       <section className="pt-48 pb-32 px-8 max-w-7xl mx-auto">
         <ScrollReveal>
-          <h1 className="text-[9vw] font-black tracking-[-0.05em] leading-[0.9] mb-12 text-white">
-            SEBASTIAN<br/><span className="text-cyan-400">RODRIGUEZ</span>
+          <h1 className="text-[9vw] font-black tracking-[-0.05em] leading-[0.9] mb-12">
+            <span className="title-sweep">SEBASTIAN</span><br/>
+            <span className="text-cyan-400 title-glow">RODRIGUEZ</span>
           </h1>
         </ScrollReveal>
         <ScrollReveal delay={0.2}>
@@ -43,12 +44,12 @@ export default async function Home() {
 
       {/* PROJECTS */}
       <section id="projects" className="pb-32 px-8 max-w-7xl mx-auto">
-        <h2 className="text-[10px] font-bold uppercase tracking-[0.2em] mb-12 border-l-4 border-cyan-500 pl-4 text-cyan-400">01. PROJECTS_INDEX</h2>
+        <h2 className="text-[10px] font-bold uppercase tracking-[0.2em] mb-12 border-l-4 border-cyan-500 pl-4 text-cyan-400 section-header">01. PROJECTS_INDEX</h2>
         
         <div className="grid md:grid-cols-2 gap-4">
           {projects.map((project: any, i: number) => (
             <ScrollReveal key={i} delay={i * 0.1}>
-              <Link href={`/project/${project._id}`} className="group block border border-zinc-800 p-6 hover:border-cyan-500 hover:bg-zinc-900 transition-all duration-300">
+              <Link href={`/project/${project._id}`} className="group block border border-zinc-800 p-6 hover:border-cyan-500 hover:bg-zinc-900 transition-all duration-300 card-fx">
                 <div className="flex justify-between items-start mb-12 text-zinc-500">
                   <span className="font-mono text-[10px]">0{i + 1}</span>
                   <span className="font-mono text-[10px] uppercase text-cyan-400">{project.technologies?.[0] || 'DEV'}</span>
@@ -66,7 +67,7 @@ export default async function Home() {
       {/* ABOUT ME - DARK TECH */}
       <section id="about" className="py-32 px-8 max-w-7xl mx-auto border-t border-zinc-800">
         <ScrollReveal>
-          <h2 className="text-[10px] font-bold uppercase tracking-[0.2em] mb-16 border-l-4 border-cyan-500 pl-4 text-cyan-400">02. BACKGROUND_IDENTITY</h2>
+          <h2 className="text-[10px] font-bold uppercase tracking-[0.2em] mb-16 border-l-4 border-cyan-500 pl-4 text-cyan-400 section-header">02. BACKGROUND_IDENTITY</h2>
         </ScrollReveal>
 
         <div className="grid md:grid-cols-12 gap-16 mb-24">
@@ -166,7 +167,7 @@ export default async function Home() {
             },
           ].map((exp, i) => (
             <ScrollReveal key={exp.role} delay={i * 0.1}>
-              <div className="group grid md:grid-cols-12 gap-4 border border-zinc-800 p-6 hover:border-cyan-500 hover:bg-zinc-900 transition-all duration-300">
+              <div className="group grid md:grid-cols-12 gap-4 border border-zinc-800 p-6 hover:border-cyan-500 hover:bg-zinc-900 transition-all duration-300 card-fx">
                 <div className="md:col-span-3 font-mono text-[10px] uppercase tracking-widest text-cyan-400">
                   {exp.date}
                 </div>
@@ -186,10 +187,10 @@ export default async function Home() {
       {/* CONTACT */}
       <section id="contact" className="py-32 px-8 max-w-7xl mx-auto border-t border-zinc-800">
         <ScrollReveal>
-          <h2 className="text-[10px] font-bold uppercase tracking-[0.2em] mb-16 border-l-4 border-cyan-500 pl-4 text-cyan-400">03. CONTACT</h2>
+          <h2 className="text-[10px] font-bold uppercase tracking-[0.2em] mb-16 border-l-4 border-cyan-500 pl-4 text-cyan-400 section-header">03. CONTACT</h2>
           <div className="grid md:grid-cols-2 gap-12 items-end">
             <h3 className="text-4xl md:text-6xl font-black tracking-tighter leading-[1.05] text-white">
-              Based in Austria.<br/>Available <span className="text-cyan-400">immediately.</span>
+              Based in Austria.<br/>Available <span className="text-cyan-400 title-glow">immediately.</span>
             </h3>
             <div className="font-mono text-[10px] uppercase tracking-widest space-y-3">
               <a href="mailto:seba.-14@hotmail.com" className="block border border-zinc-700 px-6 py-4 text-zinc-300 hover:border-cyan-500 hover:text-cyan-400 transition-colors">
