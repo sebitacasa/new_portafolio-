@@ -1,19 +1,9 @@
-import { client } from "@/sanity/lib/client";
 import Link from "next/link";
 import ScrollReveal from "@/components/ScrollReveal";
 import AnimatedBackground from "@/components/AnimatedBackground";
+import { projects } from "@/lib/projects";
 
-async function getProjects() {
-  try {
-    const query = `*[_type == "project"]{ _id, title, description, "images": images[].asset->url, technologies, githubUrl, liveUrl, demoVideoUrl }`;
-    return await client.fetch(query);
-  } catch {
-    return [];
-  }
-}
-
-export default async function Home() {
-  const projects = await getProjects();
+export default function Home() {
 
   return (
     <main className="relative bg-black text-zinc-100 min-h-screen font-sans selection:bg-cyan-500 selection:text-black">
@@ -55,10 +45,10 @@ export default async function Home() {
         </h2>
 
         <div className="flex flex-col gap-3">
-          {projects.map((project: any, i: number) => (
+          {projects.map((project, i) => (
             <ScrollReveal key={i} delay={i * 0.06}>
               <Link
-                href={`/project/${project._id}`}
+                href={`/project/${project.id}`}
                 className="group relative overflow-hidden block border border-zinc-800 hover:border-cyan-500 transition-colors duration-500 card-fx"
               >
                 {/* Video de fondo */}

@@ -1,22 +1,13 @@
-import { client } from "@/sanity/lib/client";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import VideoShowcase from "@/components/VideoShowcase";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import techStacks from "@/lib/techStacks";
+import { getProject, projects } from "@/lib/projects";
 
-async function getProjectData(slugOrId: string) {
-  const query = `*[_type == "project" && (slug.current == $slugOrId || _id == $slugOrId)][0]{
-    title,
-    description,
-    "images": images[].asset->url,
-    technologies,
-    githubUrl,
-    liveUrl,
-    demoVideoUrl
-  }`;
-  return await client.fetch(query, { slugOrId });
+export function generateStaticParams() {
+  return projects.map((p) => ({ slug: p.id }));
 }
 
 export default async function ProjectDetail({
@@ -25,7 +16,7 @@ export default async function ProjectDetail({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const project = await getProjectData(slug);
+  const project = getProject(slug);
   if (!project) return notFound();
 
   return (
