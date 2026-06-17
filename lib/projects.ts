@@ -47,7 +47,7 @@ export const projects: Project[] = [
   {
     id: "bumeran",
     title: "Bumerán",
-    description: "A collaborative project built with a partner, born from a simple idea: people already have what others need — they just have no way to find each other. Bumerán is a mobile app that connects neighbors through favors, exchanges and gifts. The rest is better discovered in the app.",
+    description: "A team project, currently in active development. Born from a simple idea: people already have what others need — they just have no way to find each other. Bumerán is a mobile app that connects neighbors through favors, exchanges and gifts. The rest is better discovered in the app.",
     technologies: ["React Native", "Expo SDK 56", "NestJS 11", "Prisma", "PostgreSQL", "Google OAuth"],
     githubUrl: "https://github.com/Dual-Stack-Studio/App-cadenas-de-favores-client",
     liveUrl: "#",
