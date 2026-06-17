@@ -82,7 +82,6 @@ const techStacks: Record<string, ProjectTechStack> = {
       "i18next with browser language detector — zero config for end users",
     ],
   },
-};
 
   "UnderEvents API": {
     entries: [
@@ -139,3 +138,4 @@ const techStacks: Record<string, ProjectTechStack> = {
 };
 
 export default techStacks;
+
