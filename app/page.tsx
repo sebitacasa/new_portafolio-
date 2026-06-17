@@ -29,7 +29,7 @@ export default async function Home() {
       <section className="pt-48 pb-32 px-8 max-w-7xl mx-auto">
         <ScrollReveal>
           <h1 className="text-[9vw] font-black tracking-[-0.05em] leading-[0.9] mb-12">
-            <span className="title-sweep">SEBASTIAN</span><br/>
+            <span className="title-gradient-flow">SEBASTIAN</span><br/>
             <span className="text-cyan-400 title-glow">RODRIGUEZ</span>
           </h1>
         </ScrollReveal>
