@@ -41,6 +41,5 @@ yarn-error.log*
 next-env.d.ts
 
 # large video files (host on Cloudinary/CDN instead)
-/public/videos/watchit-demo.mp4
 /public/videos/*.webm
 /public/videos/*.mov
