@@ -1,7 +1,6 @@
 'use client';
 
-// 18 particles — enough to feel alive without stressing the GPU
-const PARTICLES = Array.from({ length: 18 }, (_, i) => ({
+const ALL_PARTICLES = Array.from({ length: 18 }, (_, i) => ({
   id: i,
   left: `${((i * 100) / 18 + (i % 5) * 4) % 100}%`,
   delay: `${(i * 0.8) % 14}s`,
@@ -11,7 +10,8 @@ const PARTICLES = Array.from({ length: 18 }, (_, i) => ({
   opacity: 0.12 + (i % 7) * 0.065,
 }));
 
-export default function AnimatedBackground() {
+export default function AnimatedBackground({ count = 18 }: { count?: number }) {
+  const PARTICLES = ALL_PARTICLES.slice(0, count);
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
 

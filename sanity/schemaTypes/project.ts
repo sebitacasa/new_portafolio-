@@ -46,5 +46,11 @@ export default defineType({
       title: 'Live URL',
       type: 'url',
     }),
+    defineField({
+      name: 'demoVideoUrl',
+      title: 'Demo Video Path',
+      type: 'string',
+      description: 'Path to video in /public/videos/, e.g. /videos/watchit-demo.mp4',
+    }),
   ],
 })

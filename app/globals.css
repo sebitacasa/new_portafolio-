@@ -111,10 +111,10 @@ html {
   50%       { opacity: 0.85; }
 }
 
-/* Shimmer diagonal que recorre la card */
+/* Shimmer diagonal que recorre la card — transform only (GPU composited) */
 @keyframes card-shimmer {
-  0%   { left: -60%; }
-  100% { left: 130%; }
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(550%); }
 }
 
 /* === CLASES === */
@@ -152,6 +152,8 @@ html {
 .card-fx {
   position: relative;
   overflow: hidden;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 /* Borde gradient animado (capa debajo del borde zinc) */
@@ -175,7 +177,7 @@ html {
   content: '';
   position: absolute;
   top: -50%;
-  left: -60%;
+  left: -38%;
   width: 38%;
   height: 200%;
   background: linear-gradient(
@@ -185,6 +187,7 @@ html {
     transparent 80%
   );
   animation: card-shimmer 4.5s ease-in-out infinite;
+  will-change: transform;
   pointer-events: none;
   z-index: 1;
 }
@@ -194,6 +197,31 @@ html {
   box-shadow:
     0 0 25px rgba(34, 211, 238, 0.14),
     0 0 55px rgba(34, 211, 238, 0.06);
+}
+
+/* ================================================
+   VIDEO SHOWCASE
+   ================================================ */
+
+@keyframes video-scan {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(500%); }
+}
+
+.video-scanline {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 20%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(34, 211, 238, 0.03) 50%,
+    transparent
+  );
+  animation: video-scan 8s linear infinite;
+  pointer-events: none;
 }
 
 /* ================================================
