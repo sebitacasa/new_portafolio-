@@ -47,7 +47,7 @@ export const projects: Project[] = [
   {
     id: "bumeran",
     title: "Bumerán",
-    description: "Community favor exchange app — post what you need, offer what you can, or gift items to neighbors. Location-based discovery with GPS coordinates on every favor post. Google Sign-In via NestJS backend: ID token verified server-side, custom JWT issued on upsert. Three favor types (necesito / ofrezco / regalo) with lifecycle states and expiry. Built with React Native + Expo SDK 56 and a NestJS 11 API with Prisma + PostgreSQL.",
+    description: "A collaborative project built with a partner, born from a simple idea: people already have what others need — they just have no way to find each other. Bumerán is a mobile app that connects neighbors through favors, exchanges and gifts. The rest is better discovered in the app.",
     technologies: ["React Native", "Expo SDK 56", "NestJS 11", "Prisma", "PostgreSQL", "Google OAuth"],
     githubUrl: "https://github.com/Dual-Stack-Studio/App-cadenas-de-favores-client",
     liveUrl: "#",
