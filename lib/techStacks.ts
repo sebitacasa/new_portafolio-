@@ -135,6 +135,59 @@ const techStacks: Record<string, ProjectTechStack> = {
       "ioredis caches frequent read queries to reduce DB load on event listings and filters",
     ],
   },
+
+  "Echoes & Paths (CastleApp)": {
+    entries: [
+      {
+        name: "React Native 0.81 + Expo SDK 54",
+        role: "Mobile Framework",
+        detail: "Cross-platform iOS/Android app. Expo managed workflow with expo-dev-client for native module support. EAS Build for production APK/AAB generation.",
+      },
+      {
+        name: "React Navigation v7",
+        role: "Navigation",
+        detail: "Native stack navigator for screen transitions + bottom tab bar. Deep linking configured via expo-linking. Stack resets on logout to prevent back-navigation into protected screens.",
+      },
+      {
+        name: "react-native-maps + expo-location",
+        role: "Maps & GPS",
+        detail: "Google Maps provider (PROVIDER_GOOGLE) with custom retro map style. expo-location fetches user GPS coords with foreground permission flow. Markers lazy-load as user pans the map.",
+      },
+      {
+        name: "Context API + AsyncStorage",
+        role: "State & Persistence",
+        detail: "AuthContext holds JWT token and user info. FavoritesContext manages saved locations. Both contexts rehydrate from AsyncStorage on app start — session survives cold restarts.",
+      },
+      {
+        name: "Custom JWT Auth",
+        role: "Authentication",
+        detail: "Email/password login via Railway backend. Token stored in AsyncStorage, injected as Bearer header on all API calls. Google Sign-In via expo-auth-session + @react-native-google-signin.",
+      },
+      {
+        name: "Axios",
+        role: "HTTP Client",
+        detail: "Configured instance pointing to Railway backend. 60s timeout for slow mobile connections. Fallback image gallery per category (Castles, Museums, Ruins) when location photo is missing.",
+      },
+      {
+        name: "expo-image-picker",
+        role: "Media",
+        detail: "Profile photo and location image upload. Requests media library permissions at runtime — no permissions declared upfront.",
+      },
+      {
+        name: "expo-updates + EAS",
+        role: "Build & Deployment",
+        detail: "EAS Build generates signed Android APK for Play Store internal testing. expo-updates enables OTA JavaScript updates without a full store release cycle.",
+      },
+    ],
+    architecture: [
+      "React Native cross-platform app — single codebase targets Android and iOS via EAS Build",
+      "Context API replaces Redux — AuthContext + FavoritesContext cover all shared state",
+      "JWT persisted in AsyncStorage — session restored on cold start without re-login",
+      "expo-location requests GPS permission at runtime, feeds coords to react-native-maps",
+      "Axios instance with fallback image gallery — graceful degradation when backend images are missing",
+      "expo-updates allows OTA JS patches — critical fixes ship without waiting for store review",
+    ],
+  },
 };
 
 export default techStacks;
