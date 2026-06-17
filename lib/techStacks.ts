@@ -84,4 +84,58 @@ const techStacks: Record<string, ProjectTechStack> = {
   },
 };
 
+  "UnderEvents API": {
+    entries: [
+      {
+        name: "Node.js 18 + Express 4",
+        role: "Runtime & Framework",
+        detail: "RESTful API with two route groups: /events and /users. Middleware chain: CORS → bodyParser → morgan → JWT validation → controller.",
+      },
+      {
+        name: "PostgreSQL + Sequelize v6",
+        role: "Database & ORM",
+        detail: "5 models: Event, User, Ticket, Order, Reviews. UUID primary keys. Associations: User→Event, Order↔Event (junction table order_event), Order→Ticket, Event/User→Reviews.",
+      },
+      {
+        name: "Auth0 (RS256 JWT)",
+        role: "Authentication",
+        detail: "express-jwt + jwks-rsa validate Auth0-issued RS256 tokens on every protected route. JWKS public key fetched from Auth0's .well-known endpoint — no secret stored server-side.",
+      },
+      {
+        name: "Stripe SDK",
+        role: "Payments",
+        detail: "Server-side payment intent creation and webhook handling. On success: Order + Ticket statuses updated, confirmation email triggered. On failure: order marked rejected.",
+      },
+      {
+        name: "Brevo (Sendinblue) API",
+        role: "Transactional Email",
+        detail: "Nodemailer replaced by Brevo HTTP API for higher deliverability. HTML email templates sent on payment success/failure with ticket details and CTA link.",
+      },
+      {
+        name: "ioredis",
+        role: "Caching / Session",
+        detail: "Redis client for fast key-value lookups. Reduces repeat DB queries for high-frequency reads like event listings and filter results.",
+      },
+      {
+        name: "express-oauth2-jwt-bearer",
+        role: "Stripe Route Guard",
+        detail: "Secondary JWT middleware on Stripe endpoints — validates the audience and issuer independently from the main checkJwt middleware.",
+      },
+      {
+        name: "Mocha + Chai + Supertest",
+        role: "Testing",
+        detail: "Integration tests hit the real Express app instance. Supertest mounts the server without a port — tests run isolated from the network.",
+      },
+    ],
+    architecture: [
+      "RESTful API deployed on Railway — always-on PostgreSQL instance via DATABASE_URL",
+      "JWT middleware (express-jwt + jwks-rsa) validates Auth0 RS256 tokens — no secret stored on server",
+      "Service layer pattern: routes → controllers → services → Sequelize models",
+      "Stripe webhooks drive order lifecycle — status updates and email dispatch happen server-side",
+      "Brevo HTTP API handles transactional email — purchase confirmation and rejection templates",
+      "ioredis caches frequent read queries to reduce DB load on event listings and filters",
+    ],
+  },
+};
+
 export default techStacks;
