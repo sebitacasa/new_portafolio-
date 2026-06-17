@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" fill="#000000" rx="3"/>
+  <text
+    x="2"
+    y="22"
+    font-family="ui-monospace,'Courier New',Menlo,monospace"
+    font-weight="900"
+    font-size="14"
+    fill="#22d3ee"
+    letter-spacing="-1"
+  >SR_</text>
+</svg>
