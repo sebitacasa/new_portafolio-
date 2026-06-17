@@ -188,6 +188,59 @@ const techStacks: Record<string, ProjectTechStack> = {
       "expo-updates allows OTA JS patches — critical fixes ship without waiting for store review",
     ],
   },
+
+  "CastleApp API": {
+    entries: [
+      {
+        name: "Node.js (ESM) + Express 5",
+        role: "Runtime & Framework",
+        detail: "Full ESM module system ('type': 'module'). Express 5 with three route groups: /auth, /castles (locations), /social. Deployed on Railway with PostgreSQL.",
+      },
+      {
+        name: "PostgreSQL + Knex.js v3",
+        role: "Database & Query Builder",
+        detail: "Schema managed via Knex migrations. Raw query builder instead of ORM — full SQL control. Docker Compose spins up local Postgres for development parity.",
+      },
+      {
+        name: "OpenStreetMap Overpass API",
+        role: "Location Data Source",
+        detail: "Primary source for historical landmarks (castles, ruins, museums). Multi-server fallback across 4 Overpass instances with random shuffle for load distribution — survives single-node outages.",
+      },
+      {
+        name: "Nominatim + Google Places API",
+        role: "Geocoding & Enrichment",
+        detail: "Nominatim handles forward/reverse geocoding. Google Places API enriches results with photos and additional metadata. Wikipedia REST API adds historical descriptions with HTML stripping.",
+      },
+      {
+        name: "Europeana API",
+        role: "Cultural Heritage Data",
+        detail: "EU cultural heritage database queried for museum and artwork records. Results merged and deduplicated against Overpass data using fuzzy name comparison with Unicode normalization.",
+      },
+      {
+        name: "bcryptjs + jsonwebtoken",
+        role: "Authentication",
+        detail: "Password hashing with bcryptjs (cost factor 10). RS256 JWT issued on login, verified middleware on protected routes. Token contains userId and role claims.",
+      },
+      {
+        name: "Smart Category Detection",
+        role: "Data Processing",
+        detail: "Text classifier analyses Google place types + name + description to assign categories (Castles, Ruins, Museums, Plaques, Busts, Stolpersteine). Synonym expansion improves search recall.",
+      },
+      {
+        name: "syncData.js + dataProcessor",
+        role: "Data Pipeline",
+        detail: "Scheduled sync pulls fresh Overpass + Europeana data, processes and deduplicates it, then upserts into PostgreSQL. Keeps the local DB current without manual intervention.",
+      },
+    ],
+    architecture: [
+      "Express 5 REST API on Railway — PostgreSQL via DATABASE_URL connection string",
+      "Knex migrations version-control the schema — no ORM magic, explicit SQL control",
+      "Overpass multi-server fallback (4 nodes, random shuffle) — resilient to OSM server outages",
+      "Data pipeline: Overpass + Europeana → dataProcessor deduplication → PostgreSQL upsert",
+      "Fuzzy name matcher with Unicode normalization merges records across data sources",
+      "bcryptjs + JWT auth — stateless sessions, no server-side session store needed",
+    ],
+  },
 };
 
 export default techStacks;
