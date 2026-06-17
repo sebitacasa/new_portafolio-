@@ -59,6 +59,7 @@ html {
    ANIMATED BACKGROUND — CLASSES
    ================================================ */
 
+/* orb classes kept for compatibility but no longer used by AnimatedBackground */
 .animate-float-orb-1 { animation: float-orb-1 20s ease-in-out infinite; }
 .animate-float-orb-2 { animation: float-orb-2 26s ease-in-out infinite; }
 
@@ -94,15 +95,13 @@ html {
   }
 }
 
-/* Glow para section headers (texto + borde izquierdo) */
+/* Glow para section headers — solo text-shadow, sin filter (más liviano) */
 @keyframes header-glow {
   0%, 100% {
-    text-shadow: 0 0 8px rgba(34, 211, 238, 0.35);
-    filter: drop-shadow(-3px 0 6px rgba(34, 211, 238, 0.45));
+    text-shadow: 0 0 8px rgba(34, 211, 238, 0.35), -4px 0 10px rgba(34, 211, 238, 0.30);
   }
   50% {
-    text-shadow: 0 0 16px rgba(34, 211, 238, 0.80), 0 0 30px rgba(34, 211, 238, 0.28);
-    filter: drop-shadow(-3px 0 16px rgba(34, 211, 238, 0.85));
+    text-shadow: 0 0 16px rgba(34, 211, 238, 0.75), -4px 0 20px rgba(34, 211, 238, 0.65), 0 0 30px rgba(34, 211, 238, 0.20);
   }
 }
 
