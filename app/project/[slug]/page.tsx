@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import VideoShowcase from "@/components/VideoShowcase";
 import AnimatedBackground from "@/components/AnimatedBackground";
+import techStacks from "@/lib/techStacks";
 
 async function getProjectData(slugOrId: string) {
   const query = `*[_type == "project" && (slug.current == $slugOrId || _id == $slugOrId)][0]{
@@ -206,16 +207,50 @@ export default async function ProjectDetail({
         <h2 className="text-[10px] font-bold uppercase tracking-[0.2em] mb-8 border-l-4 border-cyan-500 pl-4 text-cyan-400">
           {project.demoVideoUrl ? '03.' : '02.'} TECH_STACK & ARCHITECTURE
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {project.technologies?.map((tech: string, i: number) => (
-            <div
-              key={i}
-              className="border border-zinc-800 bg-zinc-900/50 p-4 text-[10px] font-mono uppercase tracking-widest text-cyan-400 leading-relaxed whitespace-pre-line hover:border-cyan-500 transition-colors"
-            >
-              {tech}
+
+        {techStacks[project.title] ? (
+          <>
+            {/* Architecture notes */}
+            <div className="mb-10 border border-zinc-800 bg-zinc-900/30 p-6 space-y-2">
+              {techStacks[project.title].architecture.map((line, i) => (
+                <p key={i} className="font-mono text-[10px] text-zinc-500 leading-relaxed">
+                  <span className="text-cyan-600 mr-2">//</span>{line}
+                </p>
+              ))}
             </div>
-          ))}
-        </div>
+
+            {/* Tech entries */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {techStacks[project.title].entries.map((tech, i) => (
+                <div
+                  key={i}
+                  className="border border-zinc-800 bg-zinc-900/50 p-5 hover:border-cyan-500 transition-colors group"
+                >
+                  <p className="font-mono text-[10px] uppercase tracking-widest text-cyan-400 mb-1">
+                    {tech.name}
+                  </p>
+                  <p className="font-mono text-[9px] uppercase tracking-widest text-zinc-600 mb-3">
+                    {tech.role}
+                  </p>
+                  <p className="text-xs text-zinc-400 leading-relaxed">
+                    {tech.detail}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {project.technologies?.map((tech: string, i: number) => (
+              <div
+                key={i}
+                className="border border-zinc-800 bg-zinc-900/50 p-4 text-[10px] font-mono uppercase tracking-widest text-cyan-400 leading-relaxed whitespace-pre-line hover:border-cyan-500 transition-colors"
+              >
+                {tech}
+              </div>
+            ))}
+          </div>
+        )}
       </section>
 
       {/* FOOTER */}
