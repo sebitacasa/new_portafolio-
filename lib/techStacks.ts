@@ -205,12 +205,12 @@ const techStacks: Record<string, ProjectTechStack> = {
       },
     ],
     architecture: [
+      "Personal project — built to solve a real need: one place for historical landmarks without Google Maps noise",
       "React Native cross-platform app — single codebase for Android and iOS via EAS Build",
       "Context API: AuthContext + FavoritesContext, JWT persisted in AsyncStorage for cold-start sessions",
       "Express 5 REST API on Railway — Knex migrations version-control the schema, no ORM",
-      "Overpass multi-server fallback (4 nodes, random shuffle) — resilient to OSM server outages",
-      "Data pipeline: Overpass + Europeana → deduplication → PostgreSQL upsert via syncData",
-      "Smart category detection auto-classifies 6 monument types from name + description analysis",
+      "Data pipeline: Overpass + Europeana → deduplication → PostgreSQL upsert via syncData.js",
+      "Smart category detection auto-classifies 6 monument types from name + description text analysis",
     ],
   },
   "El dulce de la Nonna": {

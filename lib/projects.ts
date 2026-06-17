@@ -30,7 +30,7 @@ export const projects: Project[] = [
   {
     id: "castleapp",
     title: "CastleApp",
-    description: "Full-stack cross-platform mobile app for discovering historical landmarks — castles, ruins, museums and Stolpersteine. React Native GPS-powered exploration with offline-capable JWT sessions. Express 5 backend aggregates and deduplicates data from OpenStreetMap Overpass (4-node fallback), Europeana and Google Places, with a custom smart category detection engine that auto-classifies 6 monument types.",
+    description: "Born from a personal need: living in Austria with a love for history, I found myself constantly opening Google Maps just to find castles, ruins or museums nearby — buried among restaurants, gas stations and everything else. I wanted one app where points of historical interest were front and center, nothing else.\n\nCastleApp is that app. Cross-platform mobile (React Native + Expo SDK 54) with GPS-powered exploration and a retro map style. The backend aggregates and deduplicates records from OpenStreetMap Overpass (4-node fallback), Europeana cultural heritage data, Google Places photos and Wikipedia descriptions — all classified into 6 monument types (Castles, Ruins, Museums, Plaques, Busts, Stolpersteine) by a custom text detection engine. Offline-capable sessions via AsyncStorage JWT persistence.",
     technologies: ["React Native", "Expo SDK 54", "Node.js ESM", "Express 5", "PostgreSQL", "Knex.js"],
     githubUrl: "https://github.com/sebitacasa/CastleApp-frontEnd",
     liveUrl: "#",
