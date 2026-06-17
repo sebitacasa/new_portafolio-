@@ -37,6 +37,14 @@ export const projects: Project[] = [
     demoVideoUrl: "/videos/castleapp-demo.mp4",
   },
   {
+    id: "nonna",
+    title: "El dulce de la Nonna",
+    description: "Business website for an artisan alfajores home-baker. Customers browse the landing page and submit custom orders through a validated form — the order is dispatched as two transactional emails (owner notification + customer confirmation) with no database storage needed. Built as a server-rendered Laravel 13 monolith with Blade, Tailwind v4 and Carbon date validation enforcing a 48-hour advance order window.",
+    technologies: ["Laravel 13", "PHP 8.3", "Blade", "Tailwind CSS v4", "Laravel Mail", "Vite"],
+    githubUrl: "https://github.com/Dual-Stack-Studio/Los-Alfajores-De-la-Nonna-Miami-",
+    liveUrl: "#",
+  },
+  {
     id: "bumeran",
     title: "Bumerán",
     description: "Community favor exchange app — post what you need, offer what you can, or gift items to neighbors. Location-based discovery with GPS coordinates on every favor post. Google Sign-In via NestJS backend: ID token verified server-side, custom JWT issued on upsert. Three favor types (necesito / ofrezco / regalo) with lifecycle states and expiry. Built with React Native + Expo SDK 56 and a NestJS 11 API with Prisma + PostgreSQL.",

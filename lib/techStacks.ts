@@ -213,6 +213,64 @@ const techStacks: Record<string, ProjectTechStack> = {
       "Smart category detection auto-classifies 6 monument types from name + description analysis",
     ],
   },
+  "El dulce de la Nonna": {
+    entries: [
+      {
+        name: "Laravel 13 + PHP 8.3",
+        role: "Full-Stack Framework",
+        detail: "Server-rendered monolith. MVC architecture: routes → controllers → views. Artisan CLI for migrations, mailables and dev tooling. Laravel Pail for real-time log tailing in development.",
+      },
+      {
+        name: "Blade Templates",
+        role: "View Layer — Templating",
+        detail: "Server-side rendered HTML. Layouts via @extends/@section. Components for header and shared UI. No client-side JS framework — all interactivity handled by native browser behavior.",
+      },
+      {
+        name: "Tailwind CSS v4 + Vite",
+        role: "View Layer — Styling & Assets",
+        detail: "Tailwind v4 via @tailwindcss/vite plugin — zero-config CSS bundling. Custom design tokens: rosa-pastel, chocolate, crema, rosa-fuerte. Vite compiles and hashes assets for production.",
+      },
+      {
+        name: "EncargoController",
+        role: "Controller — Order Flow",
+        detail: "create() renders the order form with Carbon-computed minimum delivery date (now + 48h). store() validates the request, dispatches two Mailables and redirects with a success flash message.",
+      },
+      {
+        name: "Laravel Validation",
+        role: "Server-Side Validation",
+        detail: "Request validation on store(): nombre, email, teléfono, dirección, fecha_entrega (after_or_equal: +48h enforced via Carbon), pedido (10–1000 chars). Custom Spanish error messages for all rules.",
+      },
+      {
+        name: "Laravel Mail + Mailables",
+        role: "Email System",
+        detail: "Two Mailables: NuevoEncargoMail dispatched to the business owner (new order alert) and ConfirmacionEncargoClienteMail dispatched to the customer. Both use Blade email templates with order details.",
+      },
+      {
+        name: "Carbon",
+        role: "Date Handling",
+        detail: "Computes the minimum allowed delivery date (Carbon::now()->addDays(2)) on every request — injected into the view and used as the after_or_equal validation constraint.",
+      },
+      {
+        name: "SQLite + Laravel Migrations",
+        role: "Database",
+        detail: "SQLite for local development — zero-config, committed as database.sqlite. Orders are not persisted in the DB (email-only flow). Migrations manage the default Laravel users, cache and jobs tables.",
+      },
+      {
+        name: "PHPUnit 12",
+        role: "Testing",
+        detail: "Laravel's built-in PHPUnit integration. Feature tests cover HTTP request/response cycles. phpunit.xml configures a separate in-memory SQLite instance so tests never touch the dev database.",
+      },
+    ],
+    architecture: [
+      "Server-rendered monolith — Blade views compiled server-side, zero client-side JS framework",
+      "Orders are email-only: no DB table for encargos, two Mailables dispatched on successful validation",
+      "Carbon enforces 48-hour advance order window — computed on request and re-validated server-side",
+      "Tailwind v4 via Vite: custom design tokens (rosa-pastel, chocolate, crema) define the brand palette",
+      "Two routes: GET /encargar (form) + POST /encargar (store) — standard Laravel resourceful pattern",
+      "SQLite in dev for zero-config setup — swappable to MySQL/PostgreSQL via DATABASE_URL",
+    ],
+  },
+
   "Bumerán": {
     entries: [
       {
