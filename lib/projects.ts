@@ -29,16 +29,8 @@ export const projects: Project[] = [
   {
     id: "underevents",
     title: "UnderEvents",
-    description: "Event discovery SPA for underground and niche events across Europe. Users browse a live map, purchase tickets via Stripe, and manage their event history — all in English or German. Admins get a full dashboard with Chart.js analytics for sales and attendance.",
-    technologies: ["React 18", "Redux Toolkit", "Auth0", "Stripe", "Leaflet", "Bootstrap 5"],
-    githubUrl: "https://github.com/sebitacasa/new-events-final",
-    liveUrl: "#",
-  },
-  {
-    id: "underevents-api",
-    title: "UnderEvents API",
-    description: "RESTful backend powering UnderEvents. Auth0 RS256 JWT validation on all protected routes — no secret stored server-side. Stripe webhooks drive the full order lifecycle: payment → ticket creation → Brevo transactional email. ioredis caches high-frequency event queries.",
-    technologies: ["Node.js", "Express 4", "PostgreSQL", "Sequelize", "Auth0", "Stripe"],
+    description: "Full-stack event discovery platform for underground and niche events across Europe. React SPA on the frontend with Auth0 login, Stripe ticket checkout, interactive Leaflet maps and EN/DE multilingual support. Node.js REST API on the backend with RS256 JWT validation, Stripe webhook order lifecycle, Brevo transactional email and Redis caching.",
+    technologies: ["React 18", "Redux Toolkit", "Auth0", "Stripe", "Node.js", "PostgreSQL"],
     githubUrl: "https://github.com/sebitacasa/new-events-final",
     liveUrl: "#",
   },
