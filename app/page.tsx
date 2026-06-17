@@ -49,7 +49,11 @@ export default function Home() {
             <ScrollReveal key={i} delay={i * 0.06}>
               <Link
                 href={`/project/${project.id}`}
-                className="group relative overflow-hidden block border border-zinc-800 hover:border-cyan-500 transition-colors duration-500 card-fx"
+                className={`group relative overflow-hidden block border transition-colors duration-500 card-fx ${
+                  project.inDevelopment
+                    ? 'border-amber-500/30 hover:border-amber-400 card-wip'
+                    : 'border-zinc-800 hover:border-cyan-500'
+                }`}
               >
                 {/* Video de fondo */}
                 {project.demoVideoUrl && (
@@ -65,25 +69,60 @@ export default function Home() {
                 )}
 
                 {/* Overlay gradient */}
-                <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/50 to-black/10 pointer-events-none" />
+                <div className={`absolute inset-0 pointer-events-none ${
+                  project.inDevelopment
+                    ? 'bg-gradient-to-r from-black/95 via-black/65 to-amber-950/15'
+                    : 'bg-gradient-to-r from-black/90 via-black/50 to-black/10'
+                }`} />
+
+                {/* WIP badge */}
+                {project.inDevelopment && (
+                  <div className="absolute top-5 right-5 z-20 flex items-center gap-2 font-mono text-[9px] uppercase tracking-widest text-amber-400 border border-amber-500/40 px-3 py-1.5 bg-black/70 backdrop-blur-sm">
+                    <span className="wip-dot w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0" />
+                    // IN_DEVELOPMENT_<span className="wip-cursor ml-0.5">▮</span>
+                  </div>
+                )}
 
                 {/* Contenido */}
-                <div className="relative z-10 flex items-center justify-between px-8 py-10 md:py-12">
+                <div className={`relative z-10 flex items-center justify-between px-8 py-10 md:py-12 ${
+                  project.inDevelopment ? 'pb-14 md:pb-16' : ''
+                }`}>
                   <div className="flex items-center gap-8">
                     <span className="font-mono text-[10px] text-zinc-700 shrink-0">0{i + 1}</span>
                     <div>
-                      <span className="font-mono text-[10px] uppercase tracking-widest text-cyan-500 block mb-2">
+                      <span className={`font-mono text-[10px] uppercase tracking-widest block mb-2 ${
+                        project.inDevelopment ? 'text-amber-500' : 'text-cyan-500'
+                      }`}>
                         {project.technologies?.[0] || 'DEV'}
                       </span>
-                      <h3 className="text-3xl md:text-4xl font-black tracking-tighter group-hover:text-cyan-400 transition-colors duration-300">
+                      <h3 className={`text-3xl md:text-4xl font-black tracking-tighter transition-colors duration-300 ${
+                        project.inDevelopment ? 'group-hover:text-amber-400' : 'group-hover:text-cyan-400'
+                      }`}>
                         {project.title}
                       </h3>
                     </div>
                   </div>
-                  <span className="shrink-0 font-mono text-[10px] uppercase tracking-widest border border-zinc-700 px-4 py-2 text-zinc-500 group-hover:border-cyan-400 group-hover:text-cyan-400 transition-all duration-300 hidden sm:block">
+                  <span className={`shrink-0 font-mono text-[10px] uppercase tracking-widest border px-4 py-2 transition-all duration-300 hidden sm:block ${
+                    project.inDevelopment
+                      ? 'border-amber-500/30 text-amber-500/60 group-hover:border-amber-400 group-hover:text-amber-400'
+                      : 'border-zinc-700 text-zinc-500 group-hover:border-cyan-400 group-hover:text-cyan-400'
+                  }`}>
                     VIEW →
                   </span>
                 </div>
+
+                {/* WIP progress bar */}
+                {project.inDevelopment && (
+                  <div className="absolute bottom-0 left-0 right-0 z-20 px-8 pb-4">
+                    <div className="flex justify-between font-mono text-[9px] uppercase tracking-widest text-amber-500/40 mb-1.5">
+                      <span>BUILD_PROGRESS</span>
+                      <span>71%</span>
+                    </div>
+                    <div className="h-[1px] bg-zinc-800 overflow-hidden">
+                      <div className="wip-bar h-full" />
+                    </div>
+                  </div>
+                )}
               </Link>
             </ScrollReveal>
           ))}

@@ -6,6 +6,7 @@ export type Project = {
   githubUrl: string;
   liveUrl: string;
   demoVideoUrl?: string;
+  inDevelopment?: boolean;
 };
 
 export const projects: Project[] = [
@@ -34,6 +35,15 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/sebitacasa/CastleApp-frontEnd",
     liveUrl: "#",
     demoVideoUrl: "/videos/castleapp-demo.mp4",
+  },
+  {
+    id: "bumeran",
+    title: "Bumerán",
+    description: "Community favor exchange app — post what you need, offer what you can, or gift items to neighbors. Location-based discovery with GPS coordinates on every favor post. Google Sign-In via NestJS backend: ID token verified server-side, custom JWT issued on upsert. Three favor types (necesito / ofrezco / regalo) with lifecycle states and expiry. Built with React Native + Expo SDK 56 and a NestJS 11 API with Prisma + PostgreSQL.",
+    technologies: ["React Native", "Expo SDK 56", "NestJS 11", "Prisma", "PostgreSQL", "Google OAuth"],
+    githubUrl: "https://github.com/Dual-Stack-Studio/App-cadenas-de-favores-client",
+    liveUrl: "#",
+    inDevelopment: true,
   },
 ];
 

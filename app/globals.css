@@ -200,6 +200,62 @@ html {
 }
 
 /* ================================================
+   WIP CARD — IN DEVELOPMENT
+   ================================================ */
+
+/* Blinking cursor after // IN_DEVELOPMENT_ */
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+.wip-cursor {
+  animation: cursor-blink 1s step-end infinite;
+}
+
+/* Pulsing dot indicator */
+@keyframes wip-dot-pulse {
+  0%, 100% { opacity: 1;   transform: scale(1); }
+  50%       { opacity: 0.3; transform: scale(0.6); }
+}
+.wip-dot {
+  animation: wip-dot-pulse 1.5s ease-in-out infinite;
+}
+
+/* One-shot progress bar fill — stays at 71% */
+@keyframes wip-progress {
+  0%   { width: 0%;   opacity: 0; }
+  8%   { opacity: 1; }
+  100% { width: 71%; }
+}
+.wip-bar {
+  animation: wip-progress 3.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  background: linear-gradient(90deg, rgba(245,158,11,0.9), rgba(251,191,36,0.5));
+}
+
+/* Amber card — overrides .card-fx cyan accents */
+.card-wip::before {
+  background: linear-gradient(
+    135deg,
+    rgba(245, 158, 11, 0.40),
+    rgba(217, 119, 6, 0.12),
+    rgba(245, 158, 11, 0.35)
+  );
+}
+.card-wip::after {
+  background: linear-gradient(
+    105deg,
+    transparent 20%,
+    rgba(245, 158, 11, 0.05) 50%,
+    transparent 80%
+  );
+}
+.card-wip:hover {
+  box-shadow:
+    0 0 25px rgba(245, 158, 11, 0.12),
+    0 0 55px rgba(245, 158, 11, 0.05);
+}
+
+/* ================================================
    VIDEO SHOWCASE
    ================================================ */
 

@@ -213,6 +213,78 @@ const techStacks: Record<string, ProjectTechStack> = {
       "Smart category detection auto-classifies 6 monument types from name + description analysis",
     ],
   },
+  "Bumerán": {
+    entries: [
+      {
+        name: "React Native 0.85 + Expo SDK 56",
+        role: "Frontend — Mobile Framework",
+        detail: "Cross-platform iOS/Android app. Expo managed workflow with expo-dev-client for native module support. TypeScript throughout — strict typing from screen components to API calls.",
+      },
+      {
+        name: "React Navigation v7",
+        role: "Frontend — Navigation",
+        detail: "Native stack navigator with tab bar. Stack resets on logout to prevent back-navigation into protected screens. Deep linking via expo-linking for future notification routing.",
+      },
+      {
+        name: "react-native-maps + expo-location",
+        role: "Frontend — Maps & GPS",
+        detail: "GPS coordinates captured via expo-location with foreground permission flow. react-native-maps renders favor pins on a live map — location is stored per-favor in the DB.",
+      },
+      {
+        name: "react-native-reanimated 4 + @gorhom/bottom-sheet",
+        role: "Frontend — Animations & UI",
+        detail: "Reanimated 4 drives smooth gesture-based transitions. @gorhom/bottom-sheet provides the favor creation and detail flow with native-feeling snap points.",
+      },
+      {
+        name: "Context API (Auth + Favoritos + Language)",
+        role: "Frontend — State Management",
+        detail: "AuthContext holds JWT + user info with AsyncStorage persistence. FavoritosContext manages saved favors. LanguageContext drives i18n via expo-localization — no Redux needed.",
+      },
+      {
+        name: "NestJS 11 + TypeScript",
+        role: "Backend — Framework",
+        detail: "Modular architecture: AuthModule, FavoresModule, UsuariosModule. Global ValidationPipe with whitelist mode — unknown fields rejected at the boundary. Global prefix /api on all routes.",
+      },
+      {
+        name: "Prisma v7 + PostgreSQL",
+        role: "Backend — Database & ORM",
+        detail: "Schema: User (googleId unique, UUID pk) and Favor (tipo enum: necesito/ofrezco/regalo, estado enum: abierto/en_proceso/cerrado, GPS lat/lng, expiraEn). Prisma migrations version-control the schema.",
+      },
+      {
+        name: "Google OAuth + JWT",
+        role: "Frontend + Backend — Authentication",
+        detail: "Frontend sends Google ID token via @react-native-google-signin. NestJS verifies it with google-auth-library, upserts the User in DB, then issues a custom JWT. Token stored in AsyncStorage — injected as Bearer header on all protected calls.",
+      },
+      {
+        name: "@nestjs/throttler + Helmet",
+        role: "Backend — Security",
+        detail: "ThrottlerGuard applied globally — 100 req/min default per IP. Trust proxy enabled so Railway's reverse proxy doesn't collapse all clients into one IP. Helmet adds standard security headers (HSTS, X-Frame-Options, etc.).",
+      },
+      {
+        name: "class-validator + class-transformer",
+        role: "Backend — DTO Validation",
+        detail: "CreateFavorDto and UpdateFavorDto enforce strict input shapes. ValidationPipe with forbidNonWhitelisted rejects any field not declared in the DTO — no unexpected data reaches the service layer.",
+      },
+      {
+        name: "Jest + Supertest",
+        role: "Backend — Testing",
+        detail: "Unit tests for AuthService and FavoresService. e2e tests via Supertest mount the NestJS app without a port — tests run against the real middleware chain and Prisma service.",
+      },
+      {
+        name: "Docker Compose",
+        role: "Backend — Dev Infrastructure",
+        detail: "docker-compose.yml spins up a local PostgreSQL instance matching the Railway production config — no divergence between dev and prod schema.",
+      },
+    ],
+    architecture: [
+      "React Native (Expo SDK 56) targeting Android first — single codebase for future iOS via EAS Build",
+      "Google Sign-In: ID token from client → google-auth-library verify → User upsert → JWT issued",
+      "Prisma schema: Favor has GPS coords, tipo (necesito/ofrezco/regalo), estado (abierto/en_proceso/cerrado)",
+      "ThrottlerGuard + trust proxy — rate limiting sees real IPs behind Railway's reverse proxy",
+      "Global ValidationPipe with whitelist: unknown DTO fields rejected before reaching controllers",
+      "Currently in active development — feature/login-google branch, EAS Build configuration pending",
+    ],
+  },
 };
 
 export default techStacks;
