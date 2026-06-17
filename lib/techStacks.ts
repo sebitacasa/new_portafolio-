@@ -189,6 +189,92 @@ const techStacks: Record<string, ProjectTechStack> = {
     ],
   },
 
+  "WatchIt": {
+    entries: [
+      {
+        name: "React 19 + Vite",
+        role: "UI Framework & Build Tool",
+        detail: "SPA with two routes: Home (room creation) and Room (video + chat). Vite handles fast HMR in dev and tree-shaken production bundles.",
+      },
+      {
+        name: "Socket.IO Client 4.8",
+        role: "Real-Time Sync",
+        detail: "Connects on room entry, disconnects on leave. Emits play/pause/seek events received from the YouTube player API and re-broadcasts them to every peer in the room.",
+      },
+      {
+        name: "react-youtube",
+        role: "Video Player",
+        detail: "Wraps the YouTube IFrame API. Exposes seekTo, playVideo, pauseVideo — the socket event handler calls these directly to apply remote state changes without causing echo loops.",
+      },
+      {
+        name: "Redux Toolkit",
+        role: "State Management",
+        detail: "Stores video search results and the active videoId. Async Thunk hits the backend YouTube proxy so the API key never reaches the browser.",
+      },
+      {
+        name: "React Router DOM v7",
+        role: "Client-Side Routing",
+        detail: "Two routes: / (room ID + username entry) and /room/:roomId. Navigation to a room triggers socket join and the veteran sync handshake.",
+      },
+      {
+        name: "vite-plugin-pwa",
+        role: "Progressive Web App",
+        detail: "Service worker + web manifest make WatchIt installable on desktop and mobile — users can launch it like a native app without an app store.",
+      },
+    ],
+    architecture: [
+      "SPA with two views: Home (create/join room) and Room (synchronized player + chat)",
+      "Socket.IO client joins a named room on the server — all peers in the same room share state",
+      "Veteran sync handshake: new joiner requests current time + video from the oldest peer in the room",
+      "YouTube player events (play/pause/seek) are emitted to the server, relayed to all other peers",
+      "Redux Thunk proxies YouTube search through the backend to keep the API key off the client",
+      "PWA manifest + service worker — installable on desktop and mobile via vite-plugin-pwa",
+    ],
+  },
+
+  "WatchIt API": {
+    entries: [
+      {
+        name: "Node.js + Express 5",
+        role: "Runtime & HTTP Server",
+        detail: "Minimal Express app — no database, no sessions. Two concerns: serve HTTP routes and host the Socket.IO server on the same port.",
+      },
+      {
+        name: "Socket.IO 4.8",
+        role: "WebSocket Event Bus",
+        detail: "Manages rooms as ephemeral sets of socket IDs. Relays video-event (play/pause/seek), change-video and chat-message to the correct room. All sync state lives in the browsers, not the server.",
+      },
+      {
+        name: "Veteran Sync Handshake",
+        role: "Join-Time Synchronization",
+        detail: "When a new peer joins, the server finds the oldest connected socket in the room (the 'veteran') and asks it for the current time + video ID. The veteran responds and the server forwards it only to the new joiner — ensuring instant frame-accurate sync with zero server-side state.",
+      },
+      {
+        name: "YouTube Data API v3 Proxy",
+        role: "Search Proxy",
+        detail: "GET /youtube-search proxies video search through the server using Axios. Keeps the API key in a Railway environment variable — the client never sees it.",
+      },
+      {
+        name: "Axios",
+        role: "HTTP Client",
+        detail: "Used exclusively for the YouTube Data API v3 search call. Results are mapped to { videoId, title, thumbnail } before being returned to the client.",
+      },
+      {
+        name: "Railway Deployment",
+        role: "Hosting",
+        detail: "Deployed on Railway. Port bound from process.env.PORT. No persistent storage needed — the server is stateless by design.",
+      },
+    ],
+    architecture: [
+      "Fully stateless — no database, no session store, no file system writes",
+      "Socket.IO rooms are ephemeral: created on first join, destroyed when the last peer disconnects",
+      "Veteran sync handshake resolves join-time desync without a server-side clock or timer",
+      "All video control events are relayed with socket.to(roomId) — sender is excluded to prevent echo",
+      "YouTube search proxied via Express route to keep the Google API key off the client",
+      "Deployed on Railway — single process, PORT injected by platform at runtime",
+    ],
+  },
+
   "CastleApp API": {
     entries: [
       {

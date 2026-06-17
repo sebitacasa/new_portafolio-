@@ -19,6 +19,14 @@ export const projects: Project[] = [
     demoVideoUrl: "/videos/watchit-demo.mp4",
   },
   {
+    id: "watchit-api",
+    title: "WatchIt API",
+    description: "Stateless Node.js server that powers WatchIt's real-time sync. No database — Socket.IO rooms are ephemeral sets of connected peers. A custom veteran handshake resolves join-time desync: the newest peer asks the oldest in the room for the current video and timestamp, achieving frame-accurate sync instantly. YouTube search is proxied server-side to keep the API key off the client.",
+    technologies: ["Node.js", "Express 5", "Socket.IO 4.8", "YouTube Data API v3", "Railway"],
+    githubUrl: "https://github.com/sebitacasa/watchit-backend",
+    liveUrl: "#",
+  },
+  {
     id: "underevents",
     title: "UnderEvents",
     description: "Event discovery SPA for underground and niche events across Europe. Users browse a live map, purchase tickets via Stripe, and manage their event history — all in English or German. Admins get a full dashboard with Chart.js analytics for sales and attendance.",
