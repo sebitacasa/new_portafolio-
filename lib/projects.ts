@@ -26,6 +26,7 @@ export const projects: Project[] = [
     technologies: ["React 18", "Redux Toolkit", "Auth0", "Stripe", "Node.js", "PostgreSQL"],
     githubUrl: "https://github.com/sebitacasa/new-events-final",
     liveUrl: "#",
+    demoVideoUrl: "/videos/underevents-demo.mp4",
   },
   {
     id: "castleapp",
