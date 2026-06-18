@@ -25,7 +25,7 @@ export const projects: Project[] = [
     description: "Full-stack event discovery platform for underground and niche events across Europe. React SPA on the frontend with Auth0 login, Stripe ticket checkout, interactive Leaflet maps and EN/DE multilingual support. Node.js REST API on the backend with RS256 JWT validation, Stripe webhook order lifecycle, Brevo transactional email and Redis caching.",
     technologies: ["React 18", "Redux Toolkit", "Auth0", "Stripe", "Node.js", "PostgreSQL"],
     githubUrl: "https://github.com/sebitacasa/new-events-final",
-    liveUrl: "#",
+    liveUrl: "https://new-events-final.vercel.app",
     demoVideoUrl: "/videos/underevents-demo.mp4",
   },
   {
