@@ -12,6 +12,14 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'slug',
+      title: 'Slug (debe coincidir con el ID del proyecto)',
+      type: 'slug',
+      description: 'watchit · underevents · castleapp · nonna · bumeran',
+      options: { source: 'title', maxLength: 96 },
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
       name: 'description',
       title: 'Description',
       type: 'text',
