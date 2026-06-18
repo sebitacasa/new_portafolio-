@@ -7,12 +7,13 @@ interface VideoShowcaseProps {
 }
 
 export default function VideoShowcase({ videoPath, liveUrl, title }: VideoShowcaseProps) {
+  const resolvedUrl = liveUrl && liveUrl !== '#' ? liveUrl : undefined;
   return (
     <a
-      href={liveUrl || '#'}
-      target={liveUrl ? '_blank' : undefined}
+      href={resolvedUrl ?? '#'}
+      target={resolvedUrl ? '_blank' : undefined}
       rel="noreferrer"
-      className="group block relative overflow-hidden border border-zinc-800 hover:border-cyan-500 transition-colors duration-500"
+      className={`group block relative overflow-hidden border border-zinc-800 transition-colors duration-500 ${resolvedUrl ? 'hover:border-cyan-500 cursor-pointer' : 'cursor-default'}`}
       style={{
         boxShadow: '0 0 0 rgba(34,211,238,0)',
       }}
