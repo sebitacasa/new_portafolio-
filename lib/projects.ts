@@ -16,7 +16,7 @@ export const projects: Project[] = [
     description: "Full-stack real-time collaborative video watching platform. Create a room, share the ID, and watch YouTube videos in perfect sync with friends — no accounts needed. React 19 PWA on the frontend with Socket.IO-driven play/pause/seek sync. Stateless Node.js server with a custom veteran handshake protocol that achieves frame-accurate join-time sync with zero server-side state.",
     technologies: ["React 19", "Socket.IO", "Redux Toolkit", "Node.js", "Express 5", "YouTube API"],
     githubUrl: "https://github.com/sebitacasa/watchit-frontend",
-    liveUrl: "#",
+    liveUrl: "https://watchit-frontend.vercel.app",
     demoVideoUrl: "/videos/watchit-demo.mp4",
   },
   {
