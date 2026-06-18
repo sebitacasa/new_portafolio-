@@ -8,17 +8,10 @@ interface VideoShowcaseProps {
 
 export default function VideoShowcase({ videoPath, liveUrl, title }: VideoShowcaseProps) {
   const resolvedUrl = liveUrl && liveUrl !== '#' ? liveUrl : undefined;
-  return (
-    <a
-      href={resolvedUrl ?? '#'}
-      target={resolvedUrl ? '_blank' : undefined}
-      rel="noreferrer"
-      className={`group block relative overflow-hidden border border-zinc-800 transition-colors duration-500 ${resolvedUrl ? 'hover:border-cyan-500 cursor-pointer' : 'cursor-default'}`}
-      style={{
-        boxShadow: '0 0 0 rgba(34,211,238,0)',
-      }}
-    >
-      {/* Glow ring on hover — inset shadow via inline transition */}
+
+  const inner = (
+    <>
+      {/* Glow ring on hover */}
       <div
         className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10"
         style={{ boxShadow: 'inset 0 0 80px rgba(34,211,238,0.10)' }}
@@ -67,6 +60,31 @@ export default function VideoShowcase({ videoPath, liveUrl, title }: VideoShowca
           </div>
         </div>
       </div>
-    </a>
+    </>
+  );
+
+  const sharedClass = "group block relative overflow-hidden border border-zinc-800 hover:border-cyan-500 transition-colors duration-500";
+
+  if (resolvedUrl) {
+    return (
+      <a
+        href={resolvedUrl}
+        target="_blank"
+        rel="noreferrer"
+        className={sharedClass}
+        style={{ boxShadow: '0 0 0 rgba(34,211,238,0)' }}
+      >
+        {inner}
+      </a>
+    );
+  }
+
+  return (
+    <div
+      className={sharedClass}
+      style={{ boxShadow: '0 0 0 rgba(34,211,238,0)' }}
+    >
+      {inner}
+    </div>
   );
 }
