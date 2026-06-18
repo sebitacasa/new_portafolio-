@@ -5,6 +5,7 @@ import VideoShowcase from "@/components/VideoShowcase";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import techStacks from "@/lib/techStacks";
 import { getProject, projects } from "@/lib/projects";
+import { client } from "@/sanity/lib/client";
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.id }));
@@ -18,6 +19,12 @@ export default async function ProjectDetail({
   const { slug } = await params;
   const project = getProject(slug);
   if (!project) return notFound();
+
+  const sanityProject = await client.fetch<{ liveUrl?: string }>(
+    `*[_type == "project" && title == $title][0]{ liveUrl }`,
+    { title: project.title }
+  );
+  const liveUrl = sanityProject?.liveUrl || project.liveUrl;
 
   return (
     <main className="relative bg-black text-zinc-100 min-h-screen font-sans selection:bg-cyan-500 selection:text-black">
@@ -65,7 +72,7 @@ export default async function ProjectDetail({
           </h2>
           <VideoShowcase
             videoPath={project.demoVideoUrl}
-            liveUrl={project.liveUrl}
+            liveUrl={liveUrl}
             title={project.title}
           />
         </section>
@@ -93,14 +100,16 @@ export default async function ProjectDetail({
               >
                 GITHUB
               </a>
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="text-center border border-zinc-600 px-6 py-3 font-mono text-[10px] uppercase tracking-widest hover:border-white hover:text-white transition-all"
-              >
-                LIVE_DEMO
-              </a>
+              {liveUrl && liveUrl !== "#" && (
+                <a
+                  href={liveUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-center border border-zinc-600 px-6 py-3 font-mono text-[10px] uppercase tracking-widest hover:border-white hover:text-white transition-all"
+                >
+                  LIVE_DEMO
+                </a>
+              )}
             </div>
 
             {/* Metadata del proyecto */}
