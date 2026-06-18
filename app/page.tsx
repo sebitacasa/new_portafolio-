@@ -1,6 +1,7 @@
 import Link from "next/link";
 import ScrollReveal from "@/components/ScrollReveal";
 import AnimatedBackground from "@/components/AnimatedBackground";
+import BumeranAnimation from "@/components/BumeranAnimation";
 import { projects } from "@/lib/projects";
 
 export default function Home() {
@@ -55,6 +56,9 @@ export default function Home() {
                     : 'border-zinc-800 hover:border-cyan-500'
                 }`}
               >
+                {/* Animación bumerán */}
+                {project.id === 'bumeran' && <BumeranAnimation />}
+
                 {/* Video de fondo */}
                 {project.demoVideoUrl && (
                   <video
