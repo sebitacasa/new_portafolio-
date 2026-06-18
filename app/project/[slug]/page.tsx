@@ -22,7 +22,8 @@ export default async function ProjectDetail({
 
   const sanityProject = await client.fetch<{ liveUrl?: string }>(
     `*[_type == "project" && title == $title][0]{ liveUrl }`,
-    { title: project.title }
+    { title: project.title },
+    { next: { revalidate: 60 } }
   );
   const liveUrl = sanityProject?.liveUrl || project.liveUrl;
 
