@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import ScrollReveal from "@/components/ScrollReveal";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import BumeranAnimation from "@/components/BumeranAnimation";
@@ -255,6 +256,7 @@ export default function Home() {
               issuer: "Soy Henry",
               date: "2022",
               file: "/certs/henry-fullstack-certificate.pdf",
+              image: "/certs/henry-fullstack-certificate.png",
               stack: ["JavaScript", "HTML", "CSS", "Node", "React", "Redux", "SQL"],
             },
             {
@@ -262,6 +264,7 @@ export default function Home() {
               issuer: "Alkemy",
               date: "2023",
               file: "/certs/alkemy-node-certificate.pdf",
+              image: "/certs/alkemy-node-certificate.png",
               stack: ["Node.js"],
             },
           ].map((cert, i) => (
@@ -270,9 +273,17 @@ export default function Home() {
                 href={cert.file}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group block border border-zinc-800 p-6 hover:border-cyan-500 hover:bg-zinc-900 transition-all duration-300 card-fx"
+                className="group block border border-zinc-800 hover:border-cyan-500 hover:bg-zinc-900 transition-all duration-300 card-fx"
               >
-                <div className="flex items-start justify-between gap-4 mb-4">
+                <div className="relative w-full aspect-[1.414] overflow-hidden border-b border-zinc-800 group-hover:border-cyan-500/50 transition-colors">
+                  <Image
+                    src={cert.image}
+                    alt={`${cert.title} — ${cert.issuer}`}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="flex items-start justify-between gap-4 p-6 pb-4">
                   <div>
                     <p className="text-lg font-bold tracking-tight text-white group-hover:text-cyan-400 transition-colors">
                       {cert.title}
@@ -285,7 +296,7 @@ export default function Home() {
                     VIEW →
                   </span>
                 </div>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 px-6 pb-6">
                   {cert.stack.map((s) => (
                     <span
                       key={s}
