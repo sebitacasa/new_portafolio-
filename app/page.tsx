@@ -241,6 +241,65 @@ export default function Home() {
           </div>
         </div>
 
+        {/* CERTIFICATIONS */}
+        <ScrollReveal>
+          <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] mb-12 text-zinc-500">
+            // CERTIFICATIONS
+          </h3>
+        </ScrollReveal>
+
+        <div className="grid md:grid-cols-2 gap-4 mb-24">
+          {[
+            {
+              title: "Full-Stack Web Developer",
+              issuer: "Soy Henry",
+              date: "2022",
+              file: "/certs/henry-fullstack-certificate.pdf",
+              stack: ["JavaScript", "HTML", "CSS", "Node", "React", "Redux", "SQL"],
+            },
+            {
+              title: "Node Acceleration Program",
+              issuer: "Alkemy",
+              date: "2023",
+              file: "/certs/alkemy-node-certificate.pdf",
+              stack: ["Node.js"],
+            },
+          ].map((cert, i) => (
+            <ScrollReveal key={cert.title} delay={i * 0.06}>
+              <a
+                href={cert.file}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block border border-zinc-800 p-6 hover:border-cyan-500 hover:bg-zinc-900 transition-all duration-300 card-fx"
+              >
+                <div className="flex items-start justify-between gap-4 mb-4">
+                  <div>
+                    <p className="text-lg font-bold tracking-tight text-white group-hover:text-cyan-400 transition-colors">
+                      {cert.title}
+                    </p>
+                    <p className="font-mono text-[10px] uppercase tracking-widest text-zinc-500 mt-1">
+                      {cert.issuer} — {cert.date}
+                    </p>
+                  </div>
+                  <span className="shrink-0 font-mono text-[10px] uppercase tracking-widest border border-zinc-700 text-zinc-500 px-4 py-2 group-hover:border-cyan-400 group-hover:text-cyan-400 transition-all duration-300">
+                    VIEW →
+                  </span>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {cert.stack.map((s) => (
+                    <span
+                      key={s}
+                      className="border border-zinc-700 px-2 py-1 text-[10px] font-mono uppercase font-bold text-zinc-400 group-hover:border-cyan-400/50 group-hover:text-cyan-400 transition-colors"
+                    >
+                      {s}
+                    </span>
+                  ))}
+                </div>
+              </a>
+            </ScrollReveal>
+          ))}
+        </div>
+
         {/* EXPERIENCE TIMELINE */}
         <ScrollReveal>
           <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] mb-12 text-zinc-500">
