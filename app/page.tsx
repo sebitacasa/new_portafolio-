@@ -57,7 +57,7 @@ export default function Home() {
                     : 'border-zinc-800 hover:border-cyan-500'
                 }`}
               >
-                {/* Animación bumerán */}
+                {/* Boomerang animation */}
                 {project.id === 'bumeran' && <BumeranAnimation />}
 
                 {/* Video de fondo */}

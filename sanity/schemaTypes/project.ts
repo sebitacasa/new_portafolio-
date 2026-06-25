@@ -25,7 +25,7 @@ export default defineType({
       type: 'text',
       validation: (rule) => rule.required(),
     }),
-    // 💡 CAMBIO: De 'image' (única) a 'images' (lista de imágenes)
+    // 💡 CHANGE: from a single 'image' field to an 'images' array
     defineField({
       name: 'images',
       title: 'Project Images',

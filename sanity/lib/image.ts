@@ -3,7 +3,7 @@ import { client } from './client'
 
 const builder = createImageUrlBuilder(client)
 
-// Actualizado para manejar de forma más segura el objeto de imagen de Sanity
+// Updated to handle the Sanity image object more safely
 export const urlFor = (source: any) => {
   if (!source) return null;
   return builder.image(source);

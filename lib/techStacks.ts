@@ -213,7 +213,7 @@ const techStacks: Record<string, ProjectTechStack> = {
       "Smart category detection auto-classifies 6 monument types from name + description text analysis",
     ],
   },
-  "El dulce de la Nonna": {
+  "Nonna's Sweets": {
     entries: [
       {
         name: "Laravel 13 + PHP 8.3",
@@ -271,7 +271,7 @@ const techStacks: Record<string, ProjectTechStack> = {
     ],
   },
 
-  "Bumerán": {
+  "Boomerang": {
     entries: [
       {
         name: "React Native 0.85 + Expo SDK 56",

@@ -49,7 +49,7 @@ export default async function ProjectDetail({
         </div>
       </nav>
 
-      {/* TÍTULO PRINCIPAL */}
+      {/* MAIN TITLE */}
       <section className="pt-32 pb-0 px-6 md:px-8 max-w-[1400px] mx-auto">
         <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-zinc-600 mb-3">
           // PROJECT_
@@ -65,7 +65,7 @@ export default async function ProjectDetail({
         </div>
       </section>
 
-      {/* BLOQUE 1: DEMO VIDEO (condicional) */}
+      {/* BLOCK 1: DEMO VIDEO (conditional) */}
       {project.demoVideoUrl && (
         <section className="pb-0 px-6 md:px-8 max-w-[1400px] mx-auto">
           <h2 className="text-[10px] font-bold uppercase tracking-[0.2em] mb-8 border-l-4 border-cyan-500 pl-4 text-cyan-400">
@@ -79,14 +79,14 @@ export default async function ProjectDetail({
         </section>
       )}
 
-      {/* BLOQUE 2: HEADER */}
+      {/* BLOCK 2: HEADER */}
       <section className="pt-16 pb-16 px-6 md:px-8 max-w-[1400px] mx-auto">
         <h2 className="text-[10px] font-bold uppercase tracking-[0.2em] mb-8 border-l-4 border-cyan-500 pl-4 text-cyan-400">
           {project.demoVideoUrl ? '02.' : '01.'} PROJECT_OVERVIEW
         </h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 border-t border-zinc-800 pt-10">
-          {/* Descripción + acciones */}
+          {/* Description + actions */}
           <div className="lg:col-span-2 flex flex-col gap-10">
             <p className="text-base md:text-lg text-zinc-400 leading-relaxed whitespace-pre-line">
               {project.description}

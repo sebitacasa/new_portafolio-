@@ -69,7 +69,7 @@ export default function ImageCarousel({ images }: { images: string[] }) {
                 : "border-zinc-800 opacity-40 hover:opacity-100 hover:border-zinc-500"
             }`}
           >
-            {/* LAS MINIATURAS TAMBIÉN TIENEN object-contain */}
+            {/* THUMBNAILS ALSO USE object-contain */}
             <img src={img} alt={`Thumbnail ${i + 1}`} className="w-full h-full object-contain p-1" />
           </button>
         ))}
